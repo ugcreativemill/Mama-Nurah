@@ -7,13 +7,25 @@ const sectionNodes = document.querySelectorAll("main section[id]");
 const yearElement = document.getElementById("year");
 const contactForm = document.getElementById("contact-form");
 const formNote = document.getElementById("form-note");
+const backToTopButton = document.querySelector(".back-to-top");
+let lastScrollY = window.scrollY;
 
 const updateHeaderState = () => {
   if (!siteHeader) {
     return;
   }
 
-  siteHeader.classList.toggle("is-scrolled", window.scrollY > 12);
+  const currentScrollY = window.scrollY;
+  const isScrollingDown = currentScrollY > lastScrollY;
+
+  siteHeader.classList.toggle("is-scrolled", currentScrollY > 12);
+  siteHeader.classList.toggle("is-hidden", currentScrollY > 140 && isScrollingDown);
+
+  if (backToTopButton) {
+    backToTopButton.classList.toggle("is-visible", currentScrollY > 420);
+  }
+
+  lastScrollY = currentScrollY;
 };
 
 const closeMenu = () => {
@@ -87,6 +99,12 @@ if ("IntersectionObserver" in window) {
 
 if (yearElement) {
   yearElement.textContent = String(new Date().getFullYear());
+}
+
+if (backToTopButton) {
+  backToTopButton.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
 }
 
 window.addEventListener("scroll", updateActiveNav, { passive: true });
