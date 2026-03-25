@@ -218,7 +218,7 @@ textarea {
   min-height: 2.9rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 1rem;
 }
 
@@ -526,6 +526,12 @@ textarea {
 
 .trust-points li:nth-child(3) {
   animation-delay: 1.4s;
+}
+
+.country-note {
+  margin-top: 1rem;
+  color: #5d392d;
+  font-weight: 700;
 }
 
 .hero-card,
@@ -1323,16 +1329,10 @@ textarea {
   }
 
   .topbar-wrap {
-    flex-direction: column;
-    justify-content: center;
     padding: 0.65rem 0;
   }
 
   .topbar-info {
-    justify-content: center;
-  }
-
-  .topbar-socials {
     justify-content: center;
   }
 
